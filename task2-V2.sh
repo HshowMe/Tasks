@@ -50,12 +50,13 @@ then
 else
     file=/etc/passwd
 fi
-
+if [[ $login = "-f" ]]
+then
+    login=$USER
+fi
 # PRINT THE RESULT
 if [[ $file && $login ]]
 then
-    result=`cat $file | grep -wE ^$login: | cut -d: -f6`
+    result=`cat $file | grep -wE ^$login | cut -d: -f6`
     echo "$result"
-else
-    echo "Error...This file does not contain user's home directory"
 fi
