@@ -54,12 +54,8 @@ fi
 # PRINT THE RESULT
 if [[ $file && $login ]]
 then
-    if [[ $file = "/etc/passwd" ]]
-    then
-        result=`cat $file | grep -wE ^$login: | cut -d: -f6`
-        echo "$result"
-    else 
-        result=`cat $file | grep -wE ^$login:`
-        echo "$result"
-    fi
+    result=`cat $file | grep -wE ^$login: | cut -d: -f6`
+    echo "$result"
+else
+    echo "Error...This file does not contain user's home directory"
 fi
